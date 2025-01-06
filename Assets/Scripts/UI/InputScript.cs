@@ -2,41 +2,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEditor.AnimatedValues;
-using Unity.VisualScripting;
-using UnityEngine.InputSystem;
-using JetBrains.Annotations;
-using System;
-using UnityEngine.UIElements;
 
-public class InputScript : MonoBehaviour
-{
-
-    
-    [SerializeField] Rigidbody ballRigidbody;
-    [SerializeField] Camera cam;
-    [SerializeField] GameObject ring;
-    public bool canfish = false;
-
-    [SerializeField] TMP_Text Text1;
-
-    public GameObject ball;
-    void Update()
+namespace YA {
+    public class InputScript : MonoBehaviour
     {
-        if (Input.GetKeyDown(KeyCode.F))
+
+        // variables
+        [SerializeField] Rigidbody ballRigidbody;
+        [SerializeField] Camera cam;
+        [SerializeField] GameObject ring;
+
+        // bools
+        [Header("Bools")]
+        public bool canFish = true;
+        public bool canCast = false;
+
+        // text variables
+        [SerializeField] TMP_Text testText1;
+
+        public GameObject ball;
+        private void Update()
         {
-            Text1.enabled = false;
-            cam.enabled = true;
-            canfish = true;
-
-
+            CheckInput();
         }
 
-        if (Input.GetKeyDown(KeyCode.G) && canfish)
+        private void CheckInput()
         {
-            ring.SetActive(false);
-            canfish = false;
+            // if F and canCast == true
+            if (Input.GetKeyDown(KeyCode.F) && canFish)
+            {
+                testText1.enabled = false;
+                cam.enabled = true;
+                // make sure you CAN cast the rod 
+                canCast = true;
+                // make sure you can't choose to fish twice 
+                canFish = false;
+            }
+            // cast the rod
+            // if G and canFish == true
+            if (Input.GetKeyDown(KeyCode.G) && canCast)
+            {
+                ring.SetActive(false);
+                canCast = false;
+            }
         }
     }
-
 }
