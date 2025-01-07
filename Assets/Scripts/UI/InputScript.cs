@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 namespace YA {
     public class InputScript : MonoBehaviour
@@ -19,6 +20,11 @@ namespace YA {
 
         // text variables
         [SerializeField] TMP_Text testText1;
+        public TMP_Text testText2;
+
+
+        public FishCollection fishCollection;
+
 
         public GameObject ball;
         private void Update()
@@ -44,6 +50,8 @@ namespace YA {
             {
                 ring.SetActive(false);
                 canCast = false;
+
+                fishCollection.RandomFish();
             }
         }
     }

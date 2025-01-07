@@ -14,7 +14,6 @@ namespace YA
         public InputScript inputScript;
 
 
-
         private void Update()
         {
             MoveObject();
