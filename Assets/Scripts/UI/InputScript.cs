@@ -24,6 +24,7 @@ namespace YA {
 
 
         public FishCollection fishCollection;
+        public QuickTimeEvent quickTimeEvent;
 
 
         public GameObject ball;
@@ -50,8 +51,7 @@ namespace YA {
             {
                 ring.SetActive(false);
                 canCast = false;
-
-                fishCollection.RandomFish();
+                quickTimeEvent.FishQuickTimeEvent();
             }
         }
     }
