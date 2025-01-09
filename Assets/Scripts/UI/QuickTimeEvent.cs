@@ -7,21 +7,60 @@ namespace YA
 {
     public class QuickTimeEvent : MonoBehaviour
     {
-        [SerializeField] GameObject ringQT;
+        public GameObject ringQT;
 
         public InputScript inputScript;
 
-
-        public async void FishQuickTimeEvent()
+        private void Start()
         {
-            for (int i = 0; i < 9; i++)
-            {
-                await Task.Delay(1000);
-                ringQT.transform.localScale -= new Vector3(0.1f, 0.1f, 0.1f);
 
-                if ((Input.GetKey(KeyCode.B) && ringQT.transform.localScale.y > 0.3f && ringQT.transform.localScale.y < 0.5f))
+        }
+        public async void FishQuickTimeEvent1()
+        {
+            for (int i = 0; i < 18; i++)
+            {
+                await Task.Delay(200);
+                ringQT.transform.localScale -= new Vector3(0.05f, 0, 0.05f);
+
+                if ((Input.GetKey(KeyCode.B) && ringQT.transform.localScale.x > 0.3f && ringQT.transform.localScale.x < 0.5f))
                 {
-                    Debug.Log("heheheh");
+                    Debug.Log("1");
+                    inputScript.caughtFish = true;
+                    ringQT.transform.localScale = new Vector3(1, 1, 1);
+                }
+
+            }
+        }
+
+        public async void FishQuickTimeEvent2()
+        {
+            for (int i = 0; i < 18; i++)
+            {
+                await Task.Delay(200);
+                ringQT.transform.localScale -= new Vector3(0.05f, 0, 0.05f);
+
+                if ((Input.GetKey(KeyCode.B) && ringQT.transform.localScale.x > 0.3f && ringQT.transform.localScale.x < 0.5f))
+                {
+                    Debug.Log("2");
+                    inputScript.caughtFish = true;
+                    ringQT.transform.localScale = new Vector3(1, 1, 1);
+                }
+
+            }
+        }
+
+        public async void FishQuickTimeEvent3()
+        {
+            for (int i = 0; i < 18; i++)
+            {
+                await Task.Delay(200);
+                ringQT.transform.localScale -= new Vector3(0.05f, 0, 0.05f);
+
+                if ((Input.GetKey(KeyCode.B) && ringQT.transform.localScale.x > 0.3f && ringQT.transform.localScale.x < 0.5f))
+                {
+                    Debug.Log("3");
+                    inputScript.caughtFish = true;
+                    ringQT.transform.localScale = new Vector3(1, 1, 1);
                 }
 
             }
