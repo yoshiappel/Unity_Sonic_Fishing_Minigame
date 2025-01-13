@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace YA
@@ -26,20 +27,19 @@ namespace YA
         public async void FishQuickTimeEvent1()
         {
             randomRings.RandomSpawnRing();
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < 14; i++)
             {
                 await Task.Delay(200);
                 ringQT.transform.localScale += new Vector3(0.05f, 0, 0.05f);
-
-                if ((Input.GetKey(KeyCode.B) && ringQT.transform.localScale.x > 0.3f && ringQT.transform.localScale.x < 0.5f))
+                if (Input.GetKey(KeyCode.B))
                 {
                     Debug.Log("1");
                     inputScript.caughtFish = true;
                     ringQT.transform.localScale = new Vector3(0.1f, 1, 0.1f);
                 }
-
             }
         }
+
 
         public async void FishQuickTimeEvent2()
         {
@@ -77,7 +77,7 @@ namespace YA
 
         private void RevertScale()
         {
-            if (ringQT.transform.localScale.x >= 0.7f)
+            if (ringQT.transform.localScale.x >= 1.1f)
             {
                 ringQT.transform.localScale = new Vector3(0.1f, 1, 0.1f);
             }
