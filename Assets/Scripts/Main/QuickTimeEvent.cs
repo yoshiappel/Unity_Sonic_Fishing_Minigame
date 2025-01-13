@@ -26,12 +26,12 @@ namespace YA
         }
         public async void FishQuickTimeEvent1()
         {
-            randomRings.RandomSpawnRing();
+
             for (int i = 0; i < 14; i++)
             {
                 await Task.Delay(200);
                 ringQT.transform.localScale += new Vector3(0.05f, 0, 0.05f);
-                if (Input.GetKey(KeyCode.B))
+                if (Input.GetKey(KeyCode.B) && ringQT.transform.localScale.x >= randomRings.point1.x && ringQT.transform.localScale.x <= randomRings.point2.x)
                 {
                     Debug.Log("1");
                     inputScript.caughtFish = true;

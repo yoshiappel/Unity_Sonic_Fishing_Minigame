@@ -12,11 +12,22 @@ namespace YA
 
         public GameObject targetRing;
 
+        public Vector3 point1;
+        public Vector3 point2;
+
         public void RandomSpawnRing()
         {
             Vector3 randomScale = new Vector3(Random.Range(0.3f, 0.9f), 1, Random.Range(0.3f, 0.9f));
             randomScale.z = randomScale.x;
             targetRing.transform.localScale = randomScale;
+        }
+
+        public void CalculateTargetRing()
+        {
+            point1 = new Vector3(targetRing.transform.localScale.x - 0.1f, 0, 0);
+            point2 = new Vector3(targetRing.transform.localScale.x + 0.1f, 0, 0);
+            Debug.Log(point1);
+            Debug.Log(point2);
         }
     }
 }

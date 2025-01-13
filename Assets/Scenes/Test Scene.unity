@@ -476,6 +476,8 @@ MonoBehaviour:
   QTE: {fileID: 853033174}
   inputScript: {fileID: 853033173}
   targetRing: {fileID: 234765918}
+  point1: {x: 0, y: 0, z: 0}
+  point2: {x: 0, y: 0, z: 0}
 --- !u!4 &124312019
 Transform:
   m_ObjectHideFlags: 0
@@ -17202,6 +17204,7 @@ MonoBehaviour:
   testText2: {fileID: 182007279}
   fishCollection: {fileID: 1061235428}
   quickTimeEvent: {fileID: 853033174}
+  randomRings: {fileID: 124312018}
 --- !u!114 &853033174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17790,7 +17793,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.01, z: 0}
-  m_LocalScale: {x: 1.0000001, y: 1, z: 1.0000001}
+  m_LocalScale: {x: 1.5499996, y: 1, z: 1.5499996}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 223804537}

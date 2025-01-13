@@ -33,6 +33,7 @@ namespace YA {
         // reference the other scripts
         public FishCollection fishCollection;
         public QuickTimeEvent quickTimeEvent;
+        public RandomRings randomRings;
 
 
 
@@ -47,6 +48,7 @@ namespace YA {
             // if F and canCast == true
             if (Input.GetKeyDown(KeyCode.F) && canFish)
             {
+                randomRings.RandomSpawnRing();
                 testText1.enabled = false;
                 fishCam.enabled = true;
                 mainCam.enabled = false;
@@ -54,6 +56,8 @@ namespace YA {
                 canCast = true;
                 // make sure you can't choose to fish twice 
                 canFish = false;
+
+                randomRings.CalculateTargetRing();
             }
             // cast the rod
             // if G and canFish == true
