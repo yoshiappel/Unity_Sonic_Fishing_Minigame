@@ -17,7 +17,7 @@ namespace YA
 
         public void RandomSpawnRing()
         {
-            Vector3 randomScale = new Vector3(Random.Range(0.3f, 0.9f), 1, Random.Range(0.3f, 0.9f));
+            Vector3 randomScale = new Vector3(Random.Range(0.300f, 0.800f), 1, 1);
             randomScale.z = randomScale.x;
             targetRing.transform.localScale = randomScale;
         }

@@ -24,6 +24,8 @@ namespace YA {
         public bool canFish = true;
         public bool canCast = false;
         public bool caughtFish = false;
+        public bool failedFish = false;
+        public bool revert = false;
 
         // text variables
         [Header("Text")]
@@ -34,7 +36,10 @@ namespace YA {
         public FishCollection fishCollection;
         public QuickTimeEvent quickTimeEvent;
         public RandomRings randomRings;
+        public CubeQTE cubeQte;
 
+        [Header("Input")]
+        public KeyCode ReelIn = KeyCode.B;
 
 
         private void Update()
@@ -48,7 +53,7 @@ namespace YA {
             // if F and canCast == true
             if (Input.GetKeyDown(KeyCode.F) && canFish)
             {
-                randomRings.RandomSpawnRing();
+                //randomRings.RandomSpawnRing();
                 testText1.enabled = false;
                 fishCam.enabled = true;
                 mainCam.enabled = false;
@@ -57,7 +62,7 @@ namespace YA {
                 // make sure you can't choose to fish twice 
                 canFish = false;
 
-                randomRings.CalculateTargetRing();
+                //randomRings.CalculateTargetRing();
             }
             // cast the rod
             // if G and canFish == true
@@ -69,6 +74,7 @@ namespace YA {
                 canCast = false;
                 // start the qte
                 quickTimeEvent.FishQuickTimeEvent1();
+                cubeQte.MoveCubeQte();
             }
             // if this is true (its only true if you complete the qte)
             if (caughtFish)
@@ -81,6 +87,13 @@ namespace YA {
                 // enable the right cam
                 fishCam.enabled = false;
                 mainCam.enabled = true;
+            }
+
+            if (failedFish)
+            {
+                fishCam.enabled = false;
+                mainCam.enabled = true;
+                revert = true;
             }
         }
     }
