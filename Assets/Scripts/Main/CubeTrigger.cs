@@ -19,6 +19,7 @@ namespace YA
             {
                 if (Input.GetKey(inputScript.ReelIn))
                 {
+                    QTE.Loop = false;
                     Debug.Log("Start");
                     inputScript.caughtFish = true;
                     QTE.ringQT.transform.localScale = new Vector3(0.1f, 1, 0.1f);

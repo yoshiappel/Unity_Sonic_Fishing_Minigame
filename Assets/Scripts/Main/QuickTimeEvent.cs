@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -13,6 +14,9 @@ namespace YA
         // references
         public InputScript inputScript;
         public RandomRings randomRings;
+        public CubeQTE cubeQTE;
+        public bool Loop;
+
 
         private void Update()
         {
@@ -21,17 +25,17 @@ namespace YA
 
         private void Start()
         {
+
             // make sure it the right scale
             ringQT.transform.localScale = new Vector3(0.1f, 1, 0.1f);
         }
         public async void FishQuickTimeEvent1()
         {
-
-            for (int i = 0; i < 14; i++)
+            Loop = true;
+            while (Loop)
             {
-                await Task.Delay(200);
-                ringQT.transform.localScale += new Vector3(0.05f, 0, 0.05f);
- 
+                await Task.Delay(1);
+                ringQT.transform.localScale += new Vector3(0.001f, 0, 0.001f);
             }
 
         }
@@ -42,7 +46,14 @@ namespace YA
             if (ringQT.transform.localScale.x >= 1 || inputScript.revert)
             {
                 ringQT.transform.localScale = new Vector3(0.1f, 1, 0.1f);
+                cubeQTE.cubeQTE_OBJ.transform.localPosition = new Vector3(0, 0, 1.24f);
             }
+        }
+
+        private void OnApplicationQuit()
+        {
+            ringQT.transform.localScale = new Vector3(0.1f, 1, 0.1f);
+            Loop = false;
         }
     }
 }

@@ -15,6 +15,7 @@ namespace YA
         public Vector3 point1;
         public Vector3 point2;
 
+        // for calculating the old ring system // not used at the moment
         public void RandomSpawnRing()
         {
             Vector3 randomScale = new Vector3(Random.Range(0.300f, 0.800f), 1, 1);

@@ -7,18 +7,29 @@ namespace YA
 {
     public class CubeQTE : MonoBehaviour
     {
+        public GameObject cubeQTE_OBJ;
+        public QuickTimeEvent QTE;
+        public InputScript inputScript;
+
         private void Start()
+        {
+
+        }
+
+
+        private void Update()
         {
 
         }
 
         public async void MoveCubeQte()
         {
-            for (int i = 0; i < 6; i++)
+            while (QTE.Loop)
             {
-                await Task.Delay(200);
-                transform.position += new Vector3(0, 0, 0.75f);
+                await Task.Delay(1);
+                cubeQTE_OBJ.transform.position += new Vector3(0, 0, 0.012f);
             }
         }
+
     }
 }
