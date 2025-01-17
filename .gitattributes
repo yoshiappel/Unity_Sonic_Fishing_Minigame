@@ -1,2 +1,4 @@
 *.shader linguist-vendored
 *.hlsl linguist-vendored
+*.fx linguist-vendored
+*.hlsli linguist-vendored
