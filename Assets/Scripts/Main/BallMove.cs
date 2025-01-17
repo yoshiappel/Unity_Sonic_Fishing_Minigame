@@ -6,16 +6,19 @@ namespace YA
 {
     public class BallMove : MonoBehaviour
     {
+        // references to other scripts
+        [SerializeField] InputScript inputScript;
+
         // how fast the ball moves
         private float speed = 20f;
 
+        //
         [Header("Assign these variables")]
         public GameObject ball;
-        public InputScript inputScript;
-
 
         private void Update()
         {
+            // check if the object can move
             MoveObject();
         }
 

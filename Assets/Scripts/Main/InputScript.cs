@@ -23,6 +23,7 @@ namespace YA {
         [Header("Bools")]
         public bool canFish = true;
         public bool canCast = false;
+        public bool canReelIn = false;
         public bool caughtFish = false;
         public bool failedFish = false;
         public bool revert = false;
@@ -38,16 +39,19 @@ namespace YA {
         public RandomRings randomRings;
         public CubeQTE cubeQte;
 
+        // input for actions in the game
         [Header("Input")]
         public KeyCode ReelIn = KeyCode.B;
 
 
+        // every frame
         private void Update()
         {
-            // calls this function every frame
+            // calls this function every frame so it checks for input every frame
             CheckInput();
         }
 
+        // check the input 
         private void CheckInput()
         {
             // if F and canCast == true
@@ -72,13 +76,16 @@ namespace YA {
                 ring.gameObject.SetActive(false);
                 // make sure you cant cast twice
                 canCast = false;
-                // start the qte
+                // start the QTE in QuickTimeEvent Script & the MoveCubeQTE in the CubeQTE script
                 quickTimeEvent.FishQuickTimeEvent1();
                 cubeQte.MoveCubeQte();
+                // set the bool canReelIn true so the player can reel in the fish
+                canReelIn = true;
             }
-            // if this is true (its only true if you complete the qte)
+            // if this is true (its only true if you complete the QTE)
             if (caughtFish)
             {
+                // set caughtFish false so this won't go off twice
                 caughtFish = false;
                 // call the function in fishcollections
                 fishCollection.RandomFish();
@@ -88,12 +95,16 @@ namespace YA {
                 fishCam.enabled = false;
                 mainCam.enabled = true;
             }
-
+            // if you failed to catch the fish (so if failedFish = true
             if (failedFish)
             {
+                // enable the right cam
                 fishCam.enabled = false;
                 mainCam.enabled = true;
+                // reset the ring and cube by setting revert to true
                 revert = true;
+                // setting failedFish to false so you can fail it again ;)
+                failedFish = false;
             }
         }
     }
