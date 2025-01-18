@@ -56,6 +56,8 @@ namespace YA
             // if the circle has become to big or the revert bool is true
             if (ringQT.transform.localScale.x >= 1 || inputScript.revert)
             {
+                // set FailedFish to true so the cam switches etc
+                inputScript.failedFish = true;
                 // reset the localscale of rinQT
                 ringQT.transform.localScale = new Vector3(0.1f, 1, 0.1f);
                 // reset the localposition of cubeQTE

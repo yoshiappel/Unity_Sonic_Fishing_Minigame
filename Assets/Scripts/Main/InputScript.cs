@@ -79,8 +79,7 @@ namespace YA {
                 // start the QTE in QuickTimeEvent Script & the MoveCubeQTE in the CubeQTE script
                 quickTimeEvent.FishQuickTimeEvent1();
                 cubeQte.MoveCubeQte();
-                // set the bool canReelIn true so the player can reel in the fish
-                canReelIn = true;
+
             }
             // if this is true (its only true if you complete the QTE)
             if (caughtFish)

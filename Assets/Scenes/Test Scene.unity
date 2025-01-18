@@ -444,8 +444,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a687ff5bdc456ef4f8b4ba845eb5adf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ball: {fileID: 119792271}
   inputScript: {fileID: 853033173}
+  ball: {fileID: 119792271}
 --- !u!1 &124312017
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,7 +645,7 @@ GameObject:
   - component: {fileID: 223804543}
   m_Layer: 0
   m_Name: Ring qt
-  m_TagString: ringQT
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16546,7 +16546,7 @@ GameObject:
   m_Component:
   - component: {fileID: 438553401}
   m_Layer: 0
-  m_Name: TestFish
+  m_Name: RingSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17163,8 +17163,8 @@ GameObject:
   - component: {fileID: 773845251}
   - component: {fileID: 773845255}
   m_Layer: 0
-  m_Name: CubeQTE
-  m_TagString: Cube
+  m_Name: cubeQTE
+  m_TagString: cubeQTE
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17249,7 +17249,7 @@ Transform:
   m_GameObject: {fileID: 773845250}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.3589935}
+  m_LocalPosition: {x: 0, y: 0, z: 1.4309998}
   m_LocalScale: {x: 1, y: 1, z: 0.12}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17267,9 +17267,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1326d3d51f84d04a92ead3d2679ef2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubeQTE_OBJ: {fileID: 773845250}
   QTE: {fileID: 853033174}
   inputScript: {fileID: 853033173}
+  cubeQTE_OBJ: {fileID: 773845250}
 --- !u!1 &853033170
 GameObject:
   m_ObjectHideFlags: 0
@@ -17322,6 +17322,7 @@ MonoBehaviour:
   ball: {fileID: 119792271}
   canFish: 1
   canCast: 0
+  canReelIn: 0
   caughtFish: 0
   failedFish: 0
   revert: 0
@@ -17344,11 +17345,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1f390cfa86c51b498f30d3ea0c1d6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ringQT: {fileID: 1434184351}
   inputScript: {fileID: 853033173}
   randomRings: {fileID: 124312018}
   cubeQTE: {fileID: 773845255}
   Loop: 0
+  ringQT: {fileID: 1434184351}
 --- !u!43 &890477073
 Mesh:
   m_ObjectHideFlags: 0
@@ -17922,7 +17923,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.01, z: 0}
-  m_LocalScale: {x: 0.117000036, y: 0.005526106, z: 0.117000036}
+  m_LocalScale: {x: 0.12300005, y: 0.005526106, z: 0.12300005}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 223804537}
@@ -18049,7 +18050,7 @@ GameObject:
   - component: {fileID: 1749723038}
   - component: {fileID: 1749723037}
   m_Layer: 0
-  m_Name: Trigger
+  m_Name: targetCube(TRIGGER)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18155,7 +18156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputScript: {fileID: 853033173}
   QTE: {fileID: 853033174}
-  cube: {fileID: 773845250}
+  cubeQTE: {fileID: 773845250}
 --- !u!54 &1749723038
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18231,7 +18232,7 @@ GameObject:
   - component: {fileID: 7068043037579597568}
   m_Layer: 0
   m_Name: Ring qt
-  m_TagString: targetRing
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
