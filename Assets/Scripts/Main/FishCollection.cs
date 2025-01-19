@@ -10,7 +10,7 @@ namespace YA
         [SerializeField] InputScript inputScript;
 
         // gameObjects
-        [SerializeField] GameObject fishCaught;
+        public GameObject fishCaught;
 
         // The list for all the fishes
         List<string> fishBestiary;

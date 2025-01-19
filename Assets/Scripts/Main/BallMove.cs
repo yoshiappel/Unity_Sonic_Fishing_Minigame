@@ -12,7 +12,6 @@ namespace YA
         // how fast the ball moves
         private float speed = 20f;
 
-        //
         [Header("Assign these variables")]
         public GameObject ball;
 

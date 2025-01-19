@@ -17,6 +17,7 @@ namespace YA {
         // gameObjects
         [Header("GameObjects")]
         [SerializeField] GameObject ring;
+        [SerializeField] GameObject castRod;
         public GameObject ball;
 
         // bools
@@ -26,7 +27,7 @@ namespace YA {
         public bool canReelIn = false;
         public bool caughtFish = false;
         public bool failedFish = false;
-        public bool revert = false;
+        private bool caughtFishPrompt;
 
         // text variables
         [Header("Text")]
@@ -34,77 +35,113 @@ namespace YA {
         public TMP_Text testText2;
 
         // reference the other scripts
-        public FishCollection fishCollection;
-        public QuickTimeEvent quickTimeEvent;
-        public RandomRings randomRings;
-        public CubeQTE cubeQte;
+        [SerializeField] FishCollection fishCollection;
+        [SerializeField] QuickTimeEvent quickTimeEvent;
+        [SerializeField] RandomRings randomRings;
+        [SerializeField] CubeQTE cubeQte;
+        [SerializeField] CubeTrigger cubeTrigger;
 
         // input for actions in the game
         [Header("Input")]
         public KeyCode ReelIn = KeyCode.B;
+        public KeyCode Accept = KeyCode.E;
 
 
-        // every frame
         private void Update()
         {
-            // calls this function every frame so it checks for input every frame
-            CheckInput();
+            CheckInput(); // call this function every frame so it checks for input every frame
         }
 
         // check the input 
         private void CheckInput()
         {
-            // if F and canCast == true
+            // start fishing
             if (Input.GetKeyDown(KeyCode.F) && canFish)
             {
-                //randomRings.RandomSpawnRing();
-                testText1.enabled = false;
-                fishCam.enabled = true;
-                mainCam.enabled = false;
-                // make sure you CAN cast the rod 
-                canCast = true;
-                // make sure you can't choose to fish twice 
-                canFish = false;
-
-                //randomRings.CalculateTargetRing();
+                StartFishing();
             }
             // cast the rod
-            // if G and canFish == true
             if (Input.GetKeyDown(KeyCode.G) && canCast)
             {
-                // this is for testing
-                ring.gameObject.SetActive(false);
-                // make sure you cant cast twice
-                canCast = false;
-                // start the QTE in QuickTimeEvent Script & the MoveCubeQTE in the CubeQTE script
-                quickTimeEvent.FishQuickTimeEvent1();
-                cubeQte.MoveCubeQte();
-
+                CastRod();
             }
-            // if this is true (its only true if you complete the QTE)
+            // if you complete the QTE so catch the fish
             if (caughtFish)
             {
-                // set caughtFish false so this won't go off twice
-                caughtFish = false;
-                // call the function in fishcollections
-                fishCollection.RandomFish();
-                // set the text false else you see it 
-                testText1.gameObject.SetActive(false);
-                // enable the right cam
-                fishCam.enabled = false;
-                mainCam.enabled = true;
+                FishCaught();
             }
-            // if you failed to catch the fish (so if failedFish = true
+            // if you failed to catch the fish
             if (failedFish)
             {
-                // enable the right cam
-                fishCam.enabled = false;
-                mainCam.enabled = true;
-                // reset the ring and cube by setting revert to true
-                revert = true;
-                // setting failedFish to false so you can fail it again ;)
-                failedFish = false;
+                FailedFish();
             }
+            if (Input.GetKeyDown(Accept) && caughtFishPrompt)
+            {
+                CaughtFishPrompt();
+            }
+        }
+
+        private void CaughtFishPrompt()
+        {
+            caughtFishPrompt = false;
+            fishCollection.fishCaught.gameObject.SetActive(false); // disable the fishcaught prompt
+            castRod.gameObject.SetActive(true);
+        }
+
+        public void StartFishing()
+        {
+            randomRings.RandomSpawnRing(); // set the localscale of the target ring to a random amount
+            castRod.gameObject.SetActive(false); // disable the prompt
+            EnableFishCam(); // enable the right cam (fishcam)
+            canCast = true; // make sure you CAN cast the rod 
+            canFish = false; // make sure you can't choose to fish twice 
+            randomRings.CalculateTargetRing(); // for testing (see logs for the scaling of the targetring)
+        }
+
+        private void CastRod()
+        {
+            // disable the ring for visual aspect of the game
+            ring.gameObject.SetActive(false);
+            // make sure you cant cast twice
+            canCast = false;
+            // start the QTE in QuickTimeEvent Script & the MoveCubeQTE in the CubeQTE script
+            quickTimeEvent.FishQuickTimeEvent1();
+            //cubeQte.MoveCubeQte(); // this is not needed anymore
+        }
+
+        public void FailedFish()
+        {
+            // setting failedFish to false so you can fail it again ;)
+            failedFish = false;
+            EnableMainCam(); // enable the right cam (maincam)
+            // make sure you can fish again
+            castRod.gameObject.SetActive(true);
+            canFish = true;
+        }
+
+        public void FishCaught()
+        {
+            EnableMainCam(); // enable the right cam (maincam)
+            Debug.Log("Fish Caught"); // for testing
+            caughtFish = false; // set caughtFish false so this won't go off twice
+            canFish = true; // make sure you can fish again
+            // call the function in fishcollections
+            fishCollection.RandomFish();
+            caughtFishPrompt = true;
+        }
+
+        private void EnableMainCam()
+        {
+            Debug.Log("Main camera enabled"); // see debug.log
+            fishCam.enabled = false;
+            mainCam.enabled = true;
+        }
+
+        private void EnableFishCam()
+        {
+            Debug.Log("Fish camera enabled"); // see debug.log
+            fishCam.enabled = true;
+            mainCam.enabled = false;
         }
     }
 }

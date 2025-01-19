@@ -6,50 +6,68 @@ namespace YA
 {
     public class CubeTrigger : MonoBehaviour
     {
-        // references to other scripts
-        [SerializeField] InputScript inputScript;
-        [SerializeField] QuickTimeEvent QTE;
+        // References to other scripts
+        [SerializeField] private InputScript inputScript;
+        [SerializeField] private QuickTimeEvent QTE;
 
-        // the gameObject that moves towards targetCube
-        [SerializeField] GameObject cubeQTE;
+        // The GameObject that moves towards targetCube
+        [SerializeField] private GameObject cubeQTE;
 
-        // a function to detect if the trigger in a collider is triggered // so in this case if cubeQTE is inside targetCube
-        private void OnTriggerStay(Collider other)
+        private void OnTriggerEnter(Collider other)
         {
-            // if cubeQTE is inside targetCube
-            if (other.gameObject.tag == "cubeQTE")
+            // Check if the moving cube is inside the target cube
+            if (other.CompareTag("cubeQTE"))
             {
-                // set the bool canReelIn true so the player can reel in the fish
-                inputScript.canReelIn = true;
-                // if the input ReelIn is pressed the do the following // i made it a variable because the ability to change it in the editor and in the future the settings
-                if (Input.GetKey(inputScript.ReelIn) && inputScript.canReelIn)
-                {
-                    inputScript.canReelIn = false;
-                    // first set the Loop in QTE false so the ring/cubes stop moving
-                    QTE.Loop = false;
-                    // log for testing
-                    Debug.Log("catched");
-                    // set this bool true so a other function can work in inputscript
-                    inputScript.caughtFish = true;
-                    // reset the scale of ringQT
-                    QTE.ringQT.transform.localScale = new Vector3(0.1f, 1, 0.1f);
-                    // set the bool canReelIn false so the player can't reel in the fish again
-                    inputScript.canReelIn = false;
-                }
-            }
-            // if you press reelin button but not at the right moment then you failed
-            if (Input.GetKey(inputScript.ReelIn) && !inputScript.canReelIn && !inputScript.caughtFish)
-            {
-                // log for testing
-                Debug.Log("failed");
-                inputScript.failedFish = true;
+                inputScript.canReelIn = true; // Allow reeling in
             }
         }
 
         private void OnTriggerExit(Collider other)
         {
-            inputScript.canReelIn = false;
+            if (other.CompareTag("cubeQTE"))
+            {
+                inputScript.canReelIn = false; // Disable reeling in on exit
+            }
         }
 
+        private void Update()
+        {
+            // Handle input for reeling in
+            if (Input.GetKeyDown(inputScript.ReelIn))
+            {
+                if (inputScript.canReelIn) // Successful catch
+                {
+                    CatchFish();
+                }
+                else if (!inputScript.caughtFish) // Failed attempt
+                {
+                    FailFish();
+                }
+            }
+        }
+
+        private void CatchFish()
+        {
+            inputScript.canReelIn = false;
+            inputScript.caughtFish = true;
+
+            // Stop the QTE loop
+            QTE.Loop = false;
+
+            // Reset the ring scale
+            QTE.holderQT.transform.localScale = new Vector3(0.1f, 1, 0.1f);
+
+            Debug.Log("Caught the fish!");
+        }
+
+        private void FailFish()
+        {
+            inputScript.failedFish = true;
+
+            // Stop the QTE loop
+            QTE.Loop = false;
+
+            Debug.Log("Failed to catch the fish!");
+        }
     }
 }

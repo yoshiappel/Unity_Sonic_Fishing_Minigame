@@ -1,7 +1,5 @@
-using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -14,11 +12,14 @@ namespace YA
         [SerializeField] RandomRings randomRings;
         [SerializeField] CubeQTE cubeQTE;
 
+        // vector3
+        private Vector3 holderQTScale = new Vector3(0.1f, 0.01f, 0.1f);
+
         // bools
         public bool Loop;
 
         //gameObjects
-        public GameObject ringQT;
+        public GameObject holderQT;
 
         // this calls every frame
         private void Update()
@@ -31,46 +32,59 @@ namespace YA
         private void Start()
         {
             // make sure it the right scale when the game starts
-            ringQT.transform.localScale = new Vector3(0.1f, 1, 0.1f);
+            holderQT.transform.localScale = holderQTScale;
         }
 
         // the QTE for the ring 
-        public async void FishQuickTimeEvent1()
+        public void FishQuickTimeEvent1()
         {
-            // set the Loop true so the while loop works
-            Loop = true;
-            // a while Loop that only stops when you catch a fish or fail to catch the fish
+            // start the coroutine instead of using a while loop
+            StartCoroutine(FishQuickTimeEventCoroutine());
+        }
+
+        private IEnumerator FishQuickTimeEventCoroutine()
+        {
+            Loop = true; // set the Loop to true so the while loop works
+
+            // continue scaling while Loop is true
             while (Loop)
             {
-                // delay
-                await Task.Delay(1);
-                // change the scale 
-                ringQT.transform.localScale += new Vector3(0.001f, 0, 0.001f);
+                // change the localscale
+                holderQT.transform.localScale += new Vector3(0.001f, 0, 0.001f);
+
+                // check if the scale has exceeded limits
+                if (holderQT.transform.localScale.x >= 1)
+                {
+                    // failed to catch the fish
+                    inputScript.failedFish = true;
+                    Loop = false; // Exit the loop
+                }
+
+                yield return null;
             }
 
+            // reset scale
+            holderQT.transform.localScale = holderQTScale;
         }
 
         // revert the scale if needed
         private void RevertScale()
         {
             // if the circle has become to big or the revert bool is true
-            if (ringQT.transform.localScale.x >= 1 || inputScript.revert)
+            if (holderQT.transform.localScale.x >= 1)
             {
+                Debug.Log("RevertScale");
                 // set FailedFish to true so the cam switches etc
                 inputScript.failedFish = true;
                 // reset the localscale of rinQT
-                ringQT.transform.localScale = new Vector3(0.1f, 1, 0.1f);
-                // reset the localposition of cubeQTE
-                cubeQTE.cubeQTE_OBJ.transform.localPosition = new Vector3(0, 0, 1.24f);
-                // set the bool false so it won't call twice
-                inputScript.revert = false;
+                holderQT.transform.localScale = holderQTScale;
             }
         }
 
         // if you quit out of the Application reset the ringQT localScale and set loop to false
         private void OnApplicationQuit()
         {
-            ringQT.transform.localScale = new Vector3(0.1f, 1, 0.1f);
+            holderQT.transform.localScale = holderQTScale;
             Loop = false;
         }
     }
