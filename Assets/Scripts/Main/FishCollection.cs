@@ -8,6 +8,7 @@ namespace YA
     {
         // references to other scripts
         [SerializeField] InputScript inputScript;
+        [SerializeField] SaveCaughtFish saveCaughtFish;
 
         // gameObjects
         public GameObject fishCaught;
@@ -42,6 +43,7 @@ namespace YA
             fishCaught.gameObject.SetActive(true);
             // display the caught fish
             inputScript.testText2.text = "You caught a: " + randomFish;
+            saveCaughtFish.SaveFishData();
         }
 
     }
