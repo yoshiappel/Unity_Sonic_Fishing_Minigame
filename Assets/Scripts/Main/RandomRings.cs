@@ -20,7 +20,7 @@ namespace YA
         // for making the targetRing's localscale bigger/smaller with a random amount
         public void RandomSpawnRing()
         {
-            Vector3 randomScale = new Vector3(Random.Range(0.300f, 0.800f), 1, 1); // choose a random scale between two floats
+            Vector3 randomScale = new Vector3(Random.Range(0.400f, 0.800f), 1, 1); // choose a random scale between two floats
             randomScale.z = randomScale.x; // z should be the same as x (else the ring looks weird)
             targetRing.transform.localScale = randomScale; // set the localscale of target ring to the value of randomScale
         }

@@ -38,7 +38,6 @@ namespace YA {
         [SerializeField] FishCollection fishCollection;
         [SerializeField] QuickTimeEvent quickTimeEvent;
         [SerializeField] RandomRings randomRings;
-        [SerializeField] CubeQTE cubeQte;
         [SerializeField] CubeTrigger cubeTrigger;
 
         // input for actions in the game
@@ -100,6 +99,8 @@ namespace YA {
 
         private void CastRod()
         {
+            randomRings.targetRing.gameObject.SetActive(true);
+            quickTimeEvent.holderQT.gameObject.SetActive(true);
             // disable the ring for visual aspect of the game
             ring.gameObject.SetActive(false);
             // make sure you cant cast twice
@@ -117,6 +118,7 @@ namespace YA {
             // make sure you can fish again
             castRod.gameObject.SetActive(true);
             canFish = true;
+            ResetRings();
         }
 
         public void FishCaught()
@@ -128,6 +130,7 @@ namespace YA {
             // call the function in fishcollections
             fishCollection.RandomFish();
             caughtFishPrompt = true;
+            ResetRings();
         }
 
         private void EnableMainCam()
@@ -142,6 +145,13 @@ namespace YA {
             Debug.Log("Fish camera enabled"); // see debug.log
             fishCam.enabled = true;
             mainCam.enabled = false;
+        }
+
+        private void ResetRings()
+        {
+            ring.gameObject.SetActive(true);
+            randomRings.targetRing.gameObject.SetActive(false);
+            quickTimeEvent.holderQT.gameObject.SetActive(false);
         }
     }
 }

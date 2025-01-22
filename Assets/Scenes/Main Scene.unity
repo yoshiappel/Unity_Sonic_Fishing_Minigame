@@ -8497,7 +8497,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &234765919
 Transform:
   m_ObjectHideFlags: 0
@@ -8514,6 +8514,54 @@ Transform:
   - {fileID: 6249280193540197052}
   - {fileID: 1749723036}
   m_Father: {fileID: 119792272}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &267911240
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 267911242}
+  - component: {fileID: 267911241}
+  m_Layer: 0
+  m_Name: SaveSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &267911241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 267911240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e332026c1fbb574883275e30748a8d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishCollection: {fileID: 1061235428}
+  Fish1: 
+  Fish2: 
+  Fish3: 
+--- !u!4 &267911242
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 267911240}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.480555, y: 7.3011174, z: -48.92021}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &303843473
 GameObject:
@@ -17160,7 +17208,6 @@ GameObject:
   - component: {fileID: 773845253}
   - component: {fileID: 773845252}
   - component: {fileID: 773845251}
-  - component: {fileID: 773845255}
   m_Layer: 0
   m_Name: cubeQTE
   m_TagString: cubeQTE
@@ -17196,7 +17243,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 773845250}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -17254,18 +17301,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1434184352}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &773845255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 773845250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1326d3d51f84d04a92ead3d2679ef2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &853033170
 GameObject:
   m_ObjectHideFlags: 0
@@ -17327,7 +17362,6 @@ MonoBehaviour:
   fishCollection: {fileID: 1061235428}
   quickTimeEvent: {fileID: 853033174}
   randomRings: {fileID: 124312018}
-  cubeQte: {fileID: 773845255}
   cubeTrigger: {fileID: 1749723037}
   ReelIn: 98
   Accept: 101
@@ -17345,7 +17379,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputScript: {fileID: 853033173}
   randomRings: {fileID: 124312018}
-  cubeQTE: {fileID: 773845255}
+  cubeQTE: {fileID: 0}
   Loop: 0
   holderQT: {fileID: 1434184351}
 --- !u!43 &890477073
@@ -17667,6 +17701,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputScript: {fileID: 853033173}
+  saveCaughtFish: {fileID: 267911241}
   fishCaught: {fileID: 1287256756}
   randomFish: 
 --- !u!4 &1061235429
@@ -17910,7 +17945,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1434184352
 Transform:
   m_ObjectHideFlags: 0
@@ -17921,7 +17956,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.01, z: 0}
-  m_LocalScale: {x: 0.13300006, y: 0.01, z: 0.13300006}
+  m_LocalScale: {x: 0.1, y: 0.01, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 223804537}
@@ -18083,7 +18118,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1749723032}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -26089,3 +26124,4 @@ SceneRoots:
   - {fileID: 853033172}
   - {fileID: 1061235429}
   - {fileID: 124312019}
+  - {fileID: 267911242}
