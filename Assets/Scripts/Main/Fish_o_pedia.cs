@@ -10,9 +10,6 @@ namespace YA
         [SerializeField] InputScript inputScript;
         [SerializeField] SaveCaughtFish saveCaughtFish;
 
-        // gameObjects
-        public GameObject fishCaught;
-
         // The list for all the fishes
         List<string> fishBestiary;
 
@@ -23,7 +20,7 @@ namespace YA
         public void Start()
         {
             // create the fishes
-            fishBestiary = new List<string> { "fish1", "fish2", "fish3" };
+            fishBestiary = new List<string> { "Carp", "Medaka", "Marlin" };
         }
 
         // a function to pick a random fish
@@ -40,9 +37,8 @@ namespace YA
             // put a random item from the list in randomFish trough PickRandomFish function
             randomFish = PickRandomFish(fishBestiary);
             // set this gameObject true (its a holder for a text)
-            fishCaught.gameObject.SetActive(true);
             // display the caught fish
-            inputScript.testText2.text = "You caught a: " + randomFish;
+            //inputScript.testText2.text = " Excellent! Its a " + randomFish;
             saveCaughtFish.SaveFishData();
         }
 

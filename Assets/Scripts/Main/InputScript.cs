@@ -17,7 +17,6 @@ namespace YA {
         // gameObjects
         [Header("GameObjects")]
         [SerializeField] GameObject ring;
-        [SerializeField] GameObject castRod;
         public GameObject ball;
 
         // bools
@@ -29,16 +28,12 @@ namespace YA {
         public bool failedFish = false;
         private bool caughtFishPrompt;
 
-        // text variables
-        [Header("Text")]
-        [SerializeField] TMP_Text testText1;
-        public TMP_Text testText2;
-
         // reference the other scripts
         [SerializeField] Fish_o_pedia fishOpedia;
         [SerializeField] QuickTimeEvent quickTimeEvent;
         [SerializeField] RandomRings randomRings;
         [SerializeField] CubeTrigger cubeTrigger;
+        [SerializeField] UISystem uiSystem;
 
         // input for actions in the game
         [Header("Input")]
@@ -54,14 +49,10 @@ namespace YA {
         // check the input 
         private void CheckInput()
         {
-            // start fishing
-            if (Input.GetKeyDown(KeyCode.F) && canFish)
-            {
-                StartFishing();
-            }
             // cast the rod
-            if (Input.GetKeyDown(KeyCode.G) && canCast)
+            if (Input.GetKeyDown(KeyCode.F) && canCast)
             {
+                uiSystem.OnCastTheLine();
                 CastRod();
             }
             // if you complete the QTE so catch the fish
@@ -83,14 +74,11 @@ namespace YA {
         private void CaughtFishPrompt()
         {
             caughtFishPrompt = false;
-            fishOpedia.fishCaught.gameObject.SetActive(false); // disable the fishcaught prompt
-            castRod.gameObject.SetActive(true);
         }
 
         public void StartFishing()
         {
             randomRings.RandomSpawnRing(); // set the localscale of the target ring to a random amount
-            castRod.gameObject.SetActive(false); // disable the prompt
             EnableFishCam(); // enable the right cam (fishcam)
             canCast = true; // make sure you CAN cast the rod 
             canFish = false; // make sure you can't choose to fish twice 
@@ -116,7 +104,6 @@ namespace YA {
             failedFish = false;
             EnableMainCam(); // enable the right cam (maincam)
             // make sure you can fish again
-            castRod.gameObject.SetActive(true);
             canFish = true;
             ResetRings();
         }

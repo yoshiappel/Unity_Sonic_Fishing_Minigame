@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8016543979399710202
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1170691291068699149}
+  - component: {fileID: 4397173767098261809}
+  m_Layer: 0
+  m_Name: UISystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1170691291068699149
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8016543979399710202}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4397173767098261809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8016543979399710202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c9463bdcd7894742bc0d6581ef5993c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputScript: {fileID: 0}
+  goFishing: {fileID: 0}
+  fishopedia: {fileID: 0}
+  quitGame: {fileID: 0}
+  menuUI: {fileID: 0}
+  chooseFishLocationUI: {fileID: 0}
+  minigameUI: {fileID: 0}
+  fishopediaUI: {fileID: 0}
+  caughtFishUI: {fileID: 0}
+  failedFishUI: {fileID: 0}
+  quitObj: {fileID: 0}
+  reel_It_InObj: {fileID: 0}
+  hook_The_FishObj: {fileID: 0}

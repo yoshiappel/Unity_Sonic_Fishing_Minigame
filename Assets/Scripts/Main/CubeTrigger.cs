@@ -9,6 +9,7 @@ namespace YA
         // References to other scripts
         [SerializeField] private InputScript inputScript;
         [SerializeField] private QuickTimeEvent QTE;
+        [SerializeField] UISystem uiSystem;
 
         // The GameObject that moves towards targetCube
         [SerializeField] private GameObject cubeQTE;
@@ -38,10 +39,12 @@ namespace YA
                 if (inputScript.canReelIn) // Successful catch
                 {
                     CatchFish();
+                    uiSystem.OnHookTheFish();
                 }
                 else if (!inputScript.caughtFish) // Failed attempt
                 {
                     FailFish();
+                    uiSystem.OnHookTheFish();
                 }
             }
         }

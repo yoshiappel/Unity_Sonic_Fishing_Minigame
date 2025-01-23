@@ -10,7 +10,7 @@ namespace YA
         // references to other scripts
         [SerializeField] InputScript inputScript;
         [SerializeField] RandomRings randomRings;
-        [SerializeField] CubeQTE cubeQTE;
+
 
         // vector3
         private Vector3 holderQTScale = new Vector3(0.1f, 0.01f, 0.1f);
