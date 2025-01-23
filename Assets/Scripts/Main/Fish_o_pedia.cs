@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace YA
 {
-    public class FishCollection : MonoBehaviour
+    public class Fish_o_pedia : MonoBehaviour
     {
         // references to other scripts
         [SerializeField] InputScript inputScript;

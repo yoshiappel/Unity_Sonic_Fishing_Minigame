@@ -7,7 +7,7 @@ namespace YA
     public class SaveCaughtFish : MonoBehaviour
     {
         // references to other scripts
-        [SerializeField] FishCollection fishCollection;
+        [SerializeField] Fish_o_pedia fishOpedia;
 
         [SerializeField] string Fish1;
         [SerializeField] string Fish2;
@@ -22,19 +22,19 @@ namespace YA
         public void SaveFishData()
         {
             // if you caught the specific fish then save it to a specific string
-            if (fishCollection.randomFish == "fish1")
+            if (fishOpedia.randomFish == "fish1")
             {
-                Fish1 = fishCollection.randomFish;
+                Fish1 = fishOpedia.randomFish;
                 PlayerPrefs.SetString("Fish1", Fish1);
             }
-            if (fishCollection.randomFish == "fish2")
+            if (fishOpedia.randomFish == "fish2")
             {
-                Fish2 = fishCollection.randomFish;
+                Fish2 = fishOpedia.randomFish;
                 PlayerPrefs.SetString("Fish2", Fish2);
             }
-            if (fishCollection.randomFish == "fish3")
+            if (fishOpedia.randomFish == "fish3")
             {
-                Fish3 = fishCollection.randomFish;
+                Fish3 = fishOpedia.randomFish;
                 PlayerPrefs.SetString("Fish3", Fish3);
             }
         }

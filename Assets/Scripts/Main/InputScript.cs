@@ -35,7 +35,7 @@ namespace YA {
         public TMP_Text testText2;
 
         // reference the other scripts
-        [SerializeField] FishCollection fishCollection;
+        [SerializeField] Fish_o_pedia fishOpedia;
         [SerializeField] QuickTimeEvent quickTimeEvent;
         [SerializeField] RandomRings randomRings;
         [SerializeField] CubeTrigger cubeTrigger;
@@ -83,7 +83,7 @@ namespace YA {
         private void CaughtFishPrompt()
         {
             caughtFishPrompt = false;
-            fishCollection.fishCaught.gameObject.SetActive(false); // disable the fishcaught prompt
+            fishOpedia.fishCaught.gameObject.SetActive(false); // disable the fishcaught prompt
             castRod.gameObject.SetActive(true);
         }
 
@@ -128,7 +128,7 @@ namespace YA {
             caughtFish = false; // set caughtFish false so this won't go off twice
             canFish = true; // make sure you can fish again
             // call the function in fishcollections
-            fishCollection.RandomFish();
+            fishOpedia.RandomFish();
             caughtFishPrompt = true;
             ResetRings();
         }
