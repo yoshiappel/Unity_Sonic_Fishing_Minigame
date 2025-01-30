@@ -24,23 +24,24 @@ namespace YA
         // moves the ball using WASD
         private void MoveObject()
         {
+            // everything is inverted
             if (inputScript.canCast == true)
             {
                 if (Input.GetKey(KeyCode.D))
                 {
-                    ball.transform.position += Vector3.right * speed * Time.deltaTime;
+                    ball.transform.position += Vector3.left * speed * Time.deltaTime;
                 }
                 if (Input.GetKey(KeyCode.A))
                 {
-                    ball.transform.position += Vector3.left * speed * Time.deltaTime;
+                    ball.transform.position += Vector3.right * speed * Time.deltaTime;
                 }
                 if (Input.GetKey(KeyCode.W))
                 {
-                    ball.transform.position += Vector3.forward * speed * Time.deltaTime;
+                    ball.transform.position += Vector3.back * speed * Time.deltaTime;
                 }
                 if (Input.GetKey(KeyCode.S))
                 {
-                    ball.transform.position += Vector3.back * speed * Time.deltaTime;
+                    ball.transform.position += Vector3.forward * speed * Time.deltaTime;
                 }
             }
         }

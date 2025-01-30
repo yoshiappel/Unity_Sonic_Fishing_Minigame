@@ -46,11 +46,11 @@ namespace YA
         {
             Loop = true; // set the Loop to true so the while loop works
 
-            // continue scaling while Loop is true
             while (Loop)
             {
-                // change the localscale
-                holderQT.transform.localScale += new Vector3(0.001f, 0, 0.001f);
+                // scale up based on time
+                float scaleSpeed = .5f; // so its always the same speed
+                holderQT.transform.localScale += new Vector3(scaleSpeed * Time.deltaTime, 0, scaleSpeed * Time.deltaTime);
 
                 // check if the scale has exceeded limits
                 if (holderQT.transform.localScale.x >= 1)
@@ -60,12 +60,13 @@ namespace YA
                     Loop = false; // Exit the loop
                 }
 
-                yield return null;
+                yield return null; // Wait for the next frame
             }
 
             // reset scale
             holderQT.transform.localScale = holderQTScale;
         }
+
 
         // revert the scale if needed
         private void RevertScale()
