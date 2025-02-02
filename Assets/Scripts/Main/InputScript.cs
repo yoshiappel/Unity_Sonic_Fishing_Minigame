@@ -67,12 +67,14 @@ namespace YA {
             }
             if (Input.GetKeyDown(Accept) && caughtFishPrompt)
             {
-                CaughtFishPrompt();
+                SetCaughtFishPromptFalse();
             }
         }
 
-        private void CaughtFishPrompt()
+        private void SetCaughtFishPromptFalse()
         {
+            uiSystem.caughtFishUI.gameObject.SetActive(false);
+            uiSystem.menuUI.gameObject.SetActive(true);
             caughtFishPrompt = false;
         }
 

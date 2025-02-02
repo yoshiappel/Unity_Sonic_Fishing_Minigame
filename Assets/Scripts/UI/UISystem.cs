@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,7 +19,7 @@ namespace YA
 
         // MenuUI Canvas
         [Header("Canvases")]
-        [SerializeField] Canvas menuUI;
+        public Canvas menuUI;
 
         // ChooseFishLocationUI Canvas
         [SerializeField] Canvas chooseFishLocationUI;
@@ -30,10 +31,10 @@ namespace YA
         [SerializeField] Canvas fishopediaUI;
 
         // caughtfishUI canvas
-        [SerializeField] Canvas caughtFishUI;
+        public Canvas caughtFishUI;
 
         // caughtfishUI canvas
-        [SerializeField] Canvas failedFishUI;
+        public Canvas failedFishUI;
 
         // Holders (Obj) MinigameUi
         [Header("Holders")]
