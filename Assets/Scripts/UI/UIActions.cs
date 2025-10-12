@@ -49,7 +49,17 @@ namespace Sonic.UI
         {
             for (int i = 0; i < uiScreens.Length; i++)
             {
-                uiScreens[i].SetActive(i == currentIndex);
+                bool isActive = (i == currentIndex);
+                uiScreens[i].SetActive(isActive);
+
+                var behavior = uiScreens[i].GetComponent<UIScreenBehavior>();
+                if (behavior != null)
+                {
+                    if (isActive)
+                        behavior.OnScreenActivated();
+                    else
+                        behavior.OnScreenDeactivated();
+                }
             }
         }
     }
