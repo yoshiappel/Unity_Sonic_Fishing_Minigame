@@ -2,3 +2,6 @@
 *.hlsl linguist-vendored
 *.fx linguist-vendored
 *.hlsli linguist-vendored
+*.m linguist-language=MATLAB
+*.shader linguist-detectable=false
+*.hlsl linguist-detectable=false
