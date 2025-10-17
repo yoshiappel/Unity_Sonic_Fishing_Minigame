@@ -4,12 +4,15 @@ namespace Sonic.UI
 {
     public class UIActions : MonoBehaviour
     {
-        [SerializeField] private KeyCode prevKey = KeyCode.Q;
+        [SerializeField] private KeyCode quitKey = KeyCode.Q;
         [SerializeField] private KeyCode nextKey = KeyCode.E;
 
         [SerializeField] private GameObject[] uiScreens;
 
         private int currentIndex = 0;
+
+        [SerializeField] private bool canQuit;
+        public bool canIncrement;
 
         private void Start()
         {
@@ -18,23 +21,20 @@ namespace Sonic.UI
 
         private void Update()
         {
-            if (Input.GetKeyUp(prevKey))
+            if (Input.GetKeyUp(quitKey) && canQuit)
             {
-                MoveToPrevious();
+                QuitMG();
             }
-            else if (Input.GetKeyUp(nextKey))
+            else if (Input.GetKeyUp(nextKey) && canIncrement)
             {
                 MoveToNext();
             }
         }
 
-        private void MoveToPrevious()
+        private void QuitMG()
         {
-            if (currentIndex > 0)
-            {
-                currentIndex--;
-                UpdateUI();
-            }
+            currentIndex = 0;
+            UpdateUI();
         }
 
         private void MoveToNext()

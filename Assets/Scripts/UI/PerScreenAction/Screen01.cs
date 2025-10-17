@@ -3,15 +3,15 @@ using TMPro;
 
 namespace Sonic.UI
 {
-    public class Screen02 : UIScreenBehavior
+    public class Screen01 : UIScreenBehavior
     {
         [SerializeField] private TMP_Text messageText;
 
         public override void OnScreenActivated()
         {
             base.OnScreenActivated();
-            messageText.text = "Quit";
-            actions.canIncrement = false;
+            messageText.text = "Reel";
+            actions.canIncrement = true;
         }
     }
 }
