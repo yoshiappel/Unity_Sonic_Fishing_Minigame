@@ -8,10 +8,16 @@ namespace Sonic.UI
         [SerializeField] private KeyCode nextKey = KeyCode.E;
 
         [SerializeField] private GameObject[] uiScreens;
+        [SerializeField] private GameObject[] mgUIScreens;
 
-        private int currentIndex = 0;
+        [SerializeField] private GameObject mgScreen;
 
-        [SerializeField] private bool canQuit;
+        [SerializeField] private int currentUIScreenIndex = 0;
+        [SerializeField] private int currentMGUIScreenIndex = 0;
+
+        public bool isMG;
+
+        public bool canQuit;
         public bool canIncrement;
 
         private void Start()
@@ -21,11 +27,11 @@ namespace Sonic.UI
 
         private void Update()
         {
-            if (Input.GetKeyUp(quitKey) && canQuit)
+            if (Input.GetKeyUp(quitKey) && canQuit && isMG)
             {
                 QuitMG();
             }
-            else if (Input.GetKeyUp(nextKey) && canIncrement)
+            else if (Input.GetKeyUp(nextKey) && canIncrement && isMG)
             {
                 MoveToNext();
             }
@@ -33,23 +39,39 @@ namespace Sonic.UI
 
         private void QuitMG()
         {
-            currentIndex = 0;
+            currentMGUIScreenIndex = 0;
+            currentUIScreenIndex = 0;
+            isMG = false;
             UpdateUI();
         }
 
         private void MoveToNext()
         {
-            if (currentIndex < uiScreens.Length - 1)
+            if (currentMGUIScreenIndex < mgUIScreens.Length - 1)
             {
-                currentIndex++;
+                currentMGUIScreenIndex++;
                 UpdateUI();
             }
         }
         private void UpdateUI()
         {
+            for (int i = 0; i < mgUIScreens.Length; i++)
+            {
+                bool isActive = (i == currentMGUIScreenIndex);
+                mgUIScreens[i].SetActive(isActive);
+
+                var behavior = mgUIScreens[i].GetComponent<UIScreenBehavior>();
+                if (behavior != null)
+                {
+                    if (isActive)
+                        behavior.OnScreenActivated();
+                    else
+                        behavior.OnScreenDeactivated();
+                }
+            }
             for (int i = 0; i < uiScreens.Length; i++)
             {
-                bool isActive = (i == currentIndex);
+                bool isActive = (i == currentUIScreenIndex);
                 uiScreens[i].SetActive(isActive);
 
                 var behavior = uiScreens[i].GetComponent<UIScreenBehavior>();
@@ -61,6 +83,20 @@ namespace Sonic.UI
                         behavior.OnScreenDeactivated();
                 }
             }
+        }
+
+        public void StartMG()
+        {
+            canQuit = true;
+            isMG = true;
+            currentUIScreenIndex = 2;
+            UpdateUI();
+        }
+
+        public void FishOPedia()
+        {
+            currentUIScreenIndex = 1;
+            UpdateUI();
         }
     }
 }

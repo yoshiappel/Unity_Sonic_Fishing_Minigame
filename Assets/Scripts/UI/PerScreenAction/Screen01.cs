@@ -5,12 +5,11 @@ namespace Sonic.UI
 {
     public class Screen01 : UIScreenBehavior
     {
-        [SerializeField] private TMP_Text messageText;
-
         public override void OnScreenActivated()
         {
             base.OnScreenActivated();
-            messageText.text = "Reel";
+            messageText.text = "Cast The Line";
+            keyText.text = "E";
             actions.canIncrement = true;
         }
     }
