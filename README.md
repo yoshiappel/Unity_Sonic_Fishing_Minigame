@@ -1,3 +1,3 @@
 # Sonic Fishing Minigame
 
-A simple recreating of the Fishing Minigame from Sonic Frontiers
+A simple recreation of the Fishing Minigame from Sonic Frontiers

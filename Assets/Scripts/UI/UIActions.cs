@@ -39,9 +39,15 @@ namespace Sonic.UI
 
         private void QuitMG()
         {
-            currentMGUIScreenIndex = 0;
-            currentUIScreenIndex = 0;
-            isMG = false;
+            if (currentMGUIScreenIndex == 0)
+            {
+                currentUIScreenIndex = 0;
+                isMG = false;
+            }
+            else if (currentMGUIScreenIndex == 1)
+            {
+                currentMGUIScreenIndex = 0;
+            }
             UpdateUI();
         }
 
