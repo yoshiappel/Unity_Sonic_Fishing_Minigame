@@ -10,7 +10,7 @@ namespace Sonic.Minigame
         [SerializeField] KeyCode Right = KeyCode.RightArrow;
 
         private GameObject ball;
-        private bool canCast = false;
+        public bool canCast = false;
 
         private void Awake()
         {

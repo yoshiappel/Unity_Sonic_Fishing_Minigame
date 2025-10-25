@@ -5,7 +5,7 @@ namespace Sonic.UI
     public class UIActions : MonoBehaviour
     {
         [SerializeField] private KeyCode quitKey = KeyCode.Q;
-        [SerializeField] private KeyCode nextKey = KeyCode.E;
+        public KeyCode nextKey = KeyCode.E;
 
         [SerializeField] private GameObject[] uiScreens;
         [SerializeField] private GameObject[] mgUIScreens;
@@ -61,18 +61,21 @@ namespace Sonic.UI
         }
         private void UpdateUI()
         {
-            for (int i = 0; i < mgUIScreens.Length; i++)
+            if (isMG)
             {
-                bool isActive = (i == currentMGUIScreenIndex);
-                mgUIScreens[i].SetActive(isActive);
-
-                var behavior = mgUIScreens[i].GetComponent<UIScreenBehavior>();
-                if (behavior != null)
+                for (int i = 0; i < mgUIScreens.Length; i++)
                 {
-                    if (isActive)
-                        behavior.OnScreenActivated();
-                    else
-                        behavior.OnScreenDeactivated();
+                    bool isActive = (i == currentMGUIScreenIndex);
+                    mgUIScreens[i].SetActive(isActive);
+
+                    var behavior = mgUIScreens[i].GetComponent<UIScreenBehavior>();
+                    if (behavior != null)
+                    {
+                        if (isActive)
+                            behavior.OnScreenActivated();
+                        else
+                            behavior.OnScreenDeactivated();
+                    }
                 }
             }
             for (int i = 0; i < uiScreens.Length; i++)
